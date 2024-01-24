@@ -13,14 +13,14 @@ export class ProductsController {
         {
             id: 2,
             name: 'Iphone',
-            image: 'avatar.jpg',
+            image: 'avatar_2.png',
             description: 'Best Smartphone',
             price: 1000
         },
         {
             id: 3,
             name: 'Glasses',
-            image: 'avatar.jpg',
+            image: 'avatar_3.jpg',
             description: 'Best Glasses',
             price: 1000
         }

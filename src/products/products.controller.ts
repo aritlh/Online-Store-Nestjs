@@ -1,53 +1,33 @@
-import { Controller, Get, Param, Render } from '@nestjs/common';
+import { Controller, Get, Param, Render, Res } from '@nestjs/common';
+import { ProductsService } from './products.service';
+import { response } from 'express';
 
 @Controller('products')
 export class ProductsController {
-    static product = [
-        {
-            id: 1,
-            name: 'TV',
-            image: 'avatar.jpg',
-            description: 'Best TV',
-            price: 1000
-        },
-        {
-            id: 2,
-            name: 'Iphone',
-            image: 'avatar_2.png',
-            description: 'Best Smartphone',
-            price: 1000
-        },
-        {
-            id: 3,
-            name: 'Glasses',
-            image: 'avatar_3.jpg',
-            description: 'Best Glasses',
-            price: 1000
-        }
-    ]
+    constructor(private readonly productService: ProductsService) { }
 
     @Get()
     @Render('products/index')
-    index() {
+    async index() {
         const viewData = []
         viewData['title'] = 'Products - Online Store'
         viewData['subtitle'] = 'List of Products'
-        viewData['products'] = ProductsController.product
+        viewData['products'] = await this.productService.findAll()
         return {
             viewData: viewData
         }
     }
 
     @Get(':id')
-    @Render('products/show')
-    show(@Param() params: any) {
-        const product = ProductsController.product[params.id - 1]
+    async show(@Param() params: any, @Res() response: any) {
+        const product = await this.productService.findOne(params.id)
+        if (product === undefined) {
+            return response.redirect('/products')
+        }
         const viewData = []
         viewData['title'] = product.name + '- Online Store'
         viewData['subtitle'] = product.name + '- Product Information'
         viewData['product'] = product
-        return {
-            viewData: viewData
-        }
+        return response.render('products/show', { viewData: viewData })
     }
 }

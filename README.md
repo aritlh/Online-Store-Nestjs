@@ -57,11 +57,12 @@ $ yarn run test:e2e
 # test coverage
 $ yarn run test:cov
 ```
-## First Rule
+## Nestjs Learning Paths
 
-- Controllers should only pass an
-associative array called viewData to the views
-
-## License
+- [NestJS Roadmap](https://whimsical.com/nestjs-roadmap-ULJDxUceE9WbfYQ3ckPmwm)
+- [Best NestJS Practices and Advanced Techniques](https://dev.to/drbenzene/best-nestjs-practices-and-advanced-techniques-9m0)
+- [NestJS Roadmap for Beginners](https://blog.santoshshinde.com/nestjs-roadmap-for-beginners-4fee5be251b)
+- [NestJS Mindmaps](https://github.com/santoshshinde2012/nestjs-mindmaps)
+- [API with NestJS](https://wanago.io/courses/api-with-nestjs/)
 
 Nest is [MIT licensed](LICENSE).

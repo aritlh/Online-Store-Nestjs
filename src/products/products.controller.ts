@@ -4,8 +4,16 @@ import { response } from 'express';
 
 @Controller('products')
 export class ProductsController {
+    /**
+     * 
+     * @param productService 
+     */
     constructor(private readonly productService: ProductsService) { }
 
+    /**
+     * Handle GET request for index route
+     * Render index view with list of products
+     */
     @Get()
     @Render('products/index')
     async index() {
@@ -18,6 +26,10 @@ export class ProductsController {
         }
     }
 
+    /**
+      * Handle GET request for show route with product ID parameter
+      * Render show view with product details
+      */
     @Get(':id')
     async show(@Param() params: any, @Res() response: any) {
         const product = await this.productService.findOne(params.id)
